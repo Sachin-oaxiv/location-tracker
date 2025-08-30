@@ -36,13 +36,18 @@ const LocationTrack = () => {
           <p>Longitude : {location.longitude}</p>
           <p>Latitude : {location.latitude}</p>
 
-          <iframe 
-          title='map' 
-          width= "100%" 
-          height= "300" 
-          src={`https://maps.google.com/maps?q=${location.longitude},${location.latitude}&z=100&output=embed`}  
-          style={{ border: 0, borderRadius: "10px" }} 
-          allowFullScreen></iframe>
+        {location && location.latitude !== undefined && location.longitude !== undefined ? (
+            <iframe
+                title="map"
+                width="100%"
+                height="300"
+                style={{ border: 0, borderRadius: "10px" }}
+                src={`https://maps.google.com/maps?q=${location.latitude},${location.longitude}&z=15&output=embed`}
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <p>Waiting for location...</p>
+            )}
 
           <h4>Share Location:</h4>
           <a href={shareLink}
